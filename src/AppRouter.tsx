@@ -9,7 +9,7 @@ const rootPath = 'capital_trading'
 const AppRouter = () => (
   <HashRouter>
     <Switch>
-      <Route exact path={`/${rootPath}/`} component={Trading} />
+      <Route exact path={`/${rootPath}`} component={Trading} />
       <Route exact path={`/${rootPath}/simulator`} component={Simulator} />
     </Switch>
   </HashRouter>
