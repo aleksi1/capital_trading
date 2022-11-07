@@ -9,8 +9,8 @@ const rootPath = 'capital_trading'
 const AppRouter = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path={`${rootPath}/`} component={Trading} />
-      <Route exact path={`${rootPath}/simulator`} component={Simulator} />
+      <Route exact path={`/${rootPath}/`} component={Trading} />
+      <Route exact path={`/${rootPath}/simulator`} component={Simulator} />
     </Switch>
   </BrowserRouter>
 )
