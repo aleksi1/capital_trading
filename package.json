@@ -1,5 +1,6 @@
 {
-  "name": "forum",
+  "name": "capital_trading",
+  "homepage": "https://aleksi1.github.io/capital_trading/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -22,6 +23,7 @@
     "@types/react-redux": "^7.1.20",
     "axios": "^0.24.0",
     "draft-js": "^0.11.7",
+    "gh-pages": "^4.0.0",
     "i18next": "^21.4.0",
     "moment": "^2.29.1",
     "papaparse": "^5.3.2",
@@ -40,7 +42,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
