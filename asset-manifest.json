@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/capital_trading/static/css/main.afd7172b.chunk.css",
-    "main.js": "/capital_trading/static/js/main.662a5012.chunk.js",
-    "main.js.map": "/capital_trading/static/js/main.662a5012.chunk.js.map",
+    "main.js": "/capital_trading/static/js/main.a87c137d.chunk.js",
+    "main.js.map": "/capital_trading/static/js/main.a87c137d.chunk.js.map",
     "runtime-main.js": "/capital_trading/static/js/runtime-main.a0e6f2be.js",
     "runtime-main.js.map": "/capital_trading/static/js/runtime-main.a0e6f2be.js.map",
     "static/js/2.84485385.chunk.js": "/capital_trading/static/js/2.84485385.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.a0e6f2be.js",
     "static/js/2.84485385.chunk.js",
     "static/css/main.afd7172b.chunk.css",
-    "static/js/main.662a5012.chunk.js"
+    "static/js/main.a87c137d.chunk.js"
   ]
 }
