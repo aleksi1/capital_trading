@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/capital_trading/static/css/main.afd7172b.chunk.css",
+    "main.js": "/capital_trading/static/js/main.393fbe14.chunk.js",
+    "main.js.map": "/capital_trading/static/js/main.393fbe14.chunk.js.map",
+    "runtime-main.js": "/capital_trading/static/js/runtime-main.a0e6f2be.js",
+    "runtime-main.js.map": "/capital_trading/static/js/runtime-main.a0e6f2be.js.map",
+    "static/js/2.a826111e.chunk.js": "/capital_trading/static/js/2.a826111e.chunk.js",
+    "static/js/2.a826111e.chunk.js.map": "/capital_trading/static/js/2.a826111e.chunk.js.map",
+    "static/js/3.79c4bcef.chunk.js": "/capital_trading/static/js/3.79c4bcef.chunk.js",
+    "static/js/3.79c4bcef.chunk.js.map": "/capital_trading/static/js/3.79c4bcef.chunk.js.map",
+    "index.html": "/capital_trading/index.html",
+    "static/css/main.afd7172b.chunk.css.map": "/capital_trading/static/css/main.afd7172b.chunk.css.map",
+    "static/js/2.a826111e.chunk.js.LICENSE.txt": "/capital_trading/static/js/2.a826111e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a0e6f2be.js",
+    "static/js/2.a826111e.chunk.js",
+    "static/css/main.afd7172b.chunk.css",
+    "static/js/main.393fbe14.chunk.js"
+  ]
+}
