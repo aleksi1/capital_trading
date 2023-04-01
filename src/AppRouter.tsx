@@ -3,14 +3,13 @@ import {
 } from 'react-router-dom'
 import Trading from './Pages/Trading'
 import Simulator from './Pages/Simulator'
-
-const rootPath = 'capital_trading'
+import { rootPath } from './Helper/Helper'
 
 const AppRouter = () => (
-  <HashRouter>
+  <HashRouter basename={`${rootPath}`}>
     <Switch>
-      <Route exact path={`/${rootPath}`} component={Trading} />
-      <Route exact path={`/${rootPath}/simulator`} component={Simulator} />
+      <Route exact path="/" component={Trading} />
+      <Route exact path="/simulator" component={Simulator} />
     </Switch>
   </HashRouter>
 )

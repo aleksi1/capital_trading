@@ -1,5 +1,5 @@
 import {
-  Box, Button, Card, Chip, Grid, Link, TextField,
+  Box, Button, Card, Chip, FormControl, Grid, InputLabel, Link, MenuItem, Select, SelectChangeEvent, TextField,
 } from '@mui/material'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
@@ -19,6 +19,7 @@ import { parseChartData, ChartData } from '../Helper/ChartData'
 import { AccountDetails } from '../Types/Trading'
 
 const Trading = () => {
+  const [uploadedResults, setUploadedResults] = useState([])
   const [columnNames, setColumnNames] = useState([])
   const [accountDetails, setAccountDetails] = useState<AccountDetails>({
     type: '',
@@ -37,11 +38,18 @@ const Trading = () => {
   const [tableRows, setTableRows] = useState([])
   const [chartData, setChartData] = useState([])
 
+  const [taxYear, setTaxYear] = useState<string>()
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setTaxYear(event.target.value as string)
+  }
+
   const addToAverage = (average: number, value: number, count: number) => (count === 1 ? value
     : average + ((value - average) / count))
 
   const changeHandler = (event: any) => {
     parse(event.target.files[0], (results: any) => {
+      setUploadedResults(results.data)
       const rowValues: any = []
       const currentChartData: ChartData[] = []
       const removedAttributes = [
@@ -165,6 +173,45 @@ const Trading = () => {
     },
   ]
 
+  const getTaxYears = () => {
+    const year = new Date().getFullYear()
+    const values: number[] = []
+    for (let i = year - 5; i <= year + 5; i += 1) {
+      values.push(i)
+    }
+    return values
+  }
+
+  const calculateTaxableIncome = () => {
+    let value = 0
+    uploadedResults?.forEach((obj: any) => {
+      const d = obj
+      const amount = parseFloat(d.Amount)
+      const date = new Date(d.Modified)
+      const type = d.Type.toLowerCase()
+
+      if (taxYear && date.getFullYear() === parseInt(taxYear, 10)) {
+        if (type === 'trade' || type === 'swap') {
+          if (amount >= 0) {
+            value += amount
+          }
+        }
+      }
+    })
+    return value
+  }
+
+  const getTaxRate = (i?: number) => {
+    const income = i || calculateTaxableIncome()
+    return income <= 30000 ? 0.30 : 0.34
+  }
+
+  const calculateTaxes = () => {
+    const income = calculateTaxableIncome()
+    const taxRate = getTaxRate(income)
+    return income * taxRate
+  }
+
   return (
     <>
       <Container maxWidth="lg" sx={{ mt: 10 }}>
@@ -178,7 +225,7 @@ const Trading = () => {
               </Typography>
             </Grid>
             <Grid item xs={2} sx={{ mt: 3 }}>
-              <Link href="/simulator">Simulator</Link>
+              <Link href="#simulator">Simulator</Link>
             </Grid>
             <Grid item xs={2}>
               {' '}
@@ -285,7 +332,56 @@ const Trading = () => {
               />
             </div>
           </Box>
-
+          <Box
+            component="form"
+            sx={{ m: 1 }}
+            noValidate
+            autoComplete="off"
+          >
+            <FormControl sx={{ mr: 2 }}>
+              <InputLabel id="demo-simple-select-label">Tax Year</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={taxYear}
+                label="Tax Year"
+                onChange={handleChange}
+                defaultValue={`${new Date().getFullYear() - 1}`}
+              >
+                {getTaxYears().map((e: number) => <MenuItem value={e}>{e}</MenuItem>)}
+              </Select>
+            </FormControl>
+            <FormControl sx={{ mr: 2 }}>
+              <TextField
+                InputProps={{
+                  readOnly: true,
+                }}
+                id="outlined-disabled"
+                label={`Taxeable income in year ${taxYear}`}
+                value={` ${roundTo(calculateTaxableIncome(), 2)} €`}
+              />
+            </FormControl>
+            <FormControl sx={{ mr: 2 }}>
+              <TextField
+                InputProps={{
+                  readOnly: true,
+                }}
+                id="outlined-disabled"
+                label={`Payable taxes in year ${taxYear}`}
+                value={` ${roundTo(calculateTaxes(), 2)} €`}
+              />
+            </FormControl>
+            <FormControl sx={{ mr: 2 }}>
+              <TextField
+                InputProps={{
+                  readOnly: true,
+                }}
+                id="outlined-disabled"
+                label={`Tax rate in year ${taxYear}`}
+                value={` ${getTaxRate() * 100} %`}
+              />
+            </FormControl>
+          </Box>
         </Card>
 
         <TableContainer component={Paper}>
