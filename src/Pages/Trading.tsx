@@ -95,7 +95,7 @@ const Trading = () => {
         const date = new Date(d.Modified)
         d.Percentage = !noPercentage.includes(type) ? calculatePercentage(amount, parseFloat(d.Balance)) : ''
         rowValues.push(Object.values(d))
-        if (type === 'swap') {
+        if (type === 'swap' || type === 'trade_correction') {
           newAccountDetails.fees += amount
         }
         if (type === 'trade') {
@@ -189,9 +189,10 @@ const Trading = () => {
       const amount = parseFloat(d.Amount)
       const date = new Date(d.Modified)
       const type = d.Type.toLowerCase()
+      const allowedTypes = ['trade', 'swap', 'trade_correction']
 
       if (taxYear && date.getFullYear() === parseInt(taxYear, 10)) {
-        if (type === 'trade' || type === 'swap') {
+        if (allowedTypes.includes(type)) {
           if (amount >= 0) {
             value += amount
           }
