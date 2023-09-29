@@ -22,6 +22,7 @@ import { AccountDetails } from '../Types/Trading'
 import 'react-datepicker/dist/react-datepicker.css'
 
 const Trading = () => {
+  const [selectedYear, setSelectedYear] = useState<string>(new Date().getFullYear().toString())
   const [startDate, setStartDate] = useState<Date>(new Date(`01/01/${new Date().getFullYear() - 1}`))
   const [endDate, setEndDate] = useState<Date>(new Date())
 
@@ -51,6 +52,13 @@ const Trading = () => {
   const [chartData, setChartData] = useState([])
 
   const [taxYear, setTaxYear] = useState<string>(`${new Date().getFullYear() - 1}`)
+
+  const handleYearChange = (event: SelectChangeEvent) => {
+    setSelectedYear(event.target.value as string)
+    const sd = new Date(`01/01/${event.target.value}`)
+    setStartDate(sd)
+    setEndDate(new Date(sd.getFullYear(), 11, 31))
+  }
 
   const handleChange = (event: SelectChangeEvent) => {
     setTaxYear(event.target.value as string)
@@ -117,15 +125,15 @@ const Trading = () => {
           newAccountDetails.fees += amount
         }
         if (type === 'trade' || type === 'trade_correction' || type === 'swap') {
-          newAccountDetails.totalTrades += 1
+          if (type !== 'swap') newAccountDetails.totalTrades += 1
           if (amount >= 0) {
-            newAccountDetails.winningTrades += 1
+            if (type !== 'swap') newAccountDetails.winningTrades += 1
             newAccountDetails.wins += amount
             newAccountDetails.averageWinPercentage = addToAverage(
               newAccountDetails.averageWinPercentage, d.Percentage, newAccountDetails.winningTrades,
             )
           } else {
-            newAccountDetails.losingTrades += 1
+            if (type !== 'swap') newAccountDetails.losingTrades += 1
             newAccountDetails.losses += amount
             newAccountDetails.averageLossPercentage = addToAverage(
               newAccountDetails.averageLossPercentage, d.Percentage, newAccountDetails.losingTrades,
@@ -241,11 +249,25 @@ const Trading = () => {
         <Card sx={{ marginBottom: '10px', maxWidth: '100%' }}>
 
           <Grid container spacing={2}>
-            <Grid item xs={4}>
+            <Grid item xs={2}>
               <Typography sx={{ m: 2 }} variant="h5" component="div">
                 <ShowChartIcon sx={{ verticalAlign: 'middle' }} />
                 {' Trading'}
               </Typography>
+            </Grid>
+            <Grid item xs={2}>
+              <Select
+                labelId="year-select-label"
+                id="year-select"
+                value={selectedYear}
+                label="Year"
+                size="small"
+                sx={{ mt: 2 }}
+                onChange={handleYearChange}
+                defaultValue={`${new Date().getFullYear() - 1}`}
+              >
+                {getTaxYears().map((e: number) => <MenuItem value={e}>{e}</MenuItem>)}
+              </Select>
             </Grid>
             <Grid item xs={2}>
               <DatePicker
