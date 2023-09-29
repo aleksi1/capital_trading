@@ -428,7 +428,7 @@ const Trading = () => {
           </Box>
         </Card>
 
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} sx={{ mb: 3 }}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
