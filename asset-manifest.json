@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/participants/static/css/main.7293653a.css",
-    "main.js": "/participants/static/js/main.bd2b7998.js",
-    "static/js/787.c516b531.chunk.js": "/participants/static/js/787.c516b531.chunk.js",
-    "index.html": "/participants/index.html",
-    "main.7293653a.css.map": "/participants/static/css/main.7293653a.css.map",
-    "main.bd2b7998.js.map": "/participants/static/js/main.bd2b7998.js.map",
-    "787.c516b531.chunk.js.map": "/participants/static/js/787.c516b531.chunk.js.map"
+    "main.css": "/capital_trading/static/css/main.9eb3d357.css",
+    "main.js": "/capital_trading/static/js/main.ac6c19ff.js",
+    "static/js/787.8f5365e5.chunk.js": "/capital_trading/static/js/787.8f5365e5.chunk.js",
+    "index.html": "/capital_trading/index.html",
+    "main.9eb3d357.css.map": "/capital_trading/static/css/main.9eb3d357.css.map",
+    "main.ac6c19ff.js.map": "/capital_trading/static/js/main.ac6c19ff.js.map",
+    "787.8f5365e5.chunk.js.map": "/capital_trading/static/js/787.8f5365e5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7293653a.css",
-    "static/js/main.bd2b7998.js"
+    "static/css/main.9eb3d357.css",
+    "static/js/main.ac6c19ff.js"
   ]
 }
