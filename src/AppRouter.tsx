@@ -1,16 +1,17 @@
 import {
-  BrowserRouter, Route, Switch,
+  HashRouter, Route, Switch,
 } from 'react-router-dom'
 import Trading from './Pages/Trading'
 import Simulator from './Pages/Simulator'
+import { rootPath } from './Helper/Helper'
 
 const AppRouter = () => (
-  <BrowserRouter>
+  <HashRouter basename={`${rootPath}`}>
     <Switch>
       <Route exact path="/" component={Trading} />
       <Route exact path="/simulator" component={Simulator} />
     </Switch>
-  </BrowserRouter>
+  </HashRouter>
 )
 
 export default AppRouter

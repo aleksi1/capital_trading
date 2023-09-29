@@ -26,3 +26,5 @@ export const formatNumber = (n: number) => {
   const numberFormatter = Intl.NumberFormat('fi-FI')
   return numberFormatter.format(roundTo(n, 2))
 }
+
+export const rootPath = '/capital_trading/'
