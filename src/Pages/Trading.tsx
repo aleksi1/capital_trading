@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom'
 import {
-  Box, Button, Card, Chip, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, TextField,
+  Box, Button, Card, Chip, FormControl, Grid, MenuItem, Select, SelectChangeEvent, TextField,
 } from '@mui/material'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
@@ -23,7 +23,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 const Trading = () => {
   const [selectedYear, setSelectedYear] = useState<string>(new Date().getFullYear().toString())
-  const [startDate, setStartDate] = useState<Date>(new Date(`01/01/${new Date().getFullYear() - 1}`))
+  const [startDate, setStartDate] = useState<Date>(new Date(`01/01/${new Date().getFullYear()}`))
   const [endDate, setEndDate] = useState<Date>(new Date())
 
   const DatePickerCustomInput = forwardRef(({ value, onClick }: any, ref: any) => (
@@ -51,16 +51,13 @@ const Trading = () => {
   const [tableRows, setTableRows] = useState([])
   const [chartData, setChartData] = useState([])
 
-  const [taxYear, setTaxYear] = useState<string>(`${new Date().getFullYear() - 1}`)
+  const [taxYear, setTaxYear] = useState<string>(`${new Date().getFullYear()}`)
 
   const handleYearChange = (event: SelectChangeEvent) => {
     setSelectedYear(event.target.value as string)
     const sd = new Date(`01/01/${event.target.value}`)
     setStartDate(sd)
     setEndDate(new Date(sd.getFullYear(), 11, 31))
-  }
-
-  const handleChange = (event: SelectChangeEvent) => {
     setTaxYear(event.target.value as string)
   }
 
@@ -404,19 +401,15 @@ const Trading = () => {
             noValidate
             autoComplete="off"
           >
-            <FormControl sx={{ mr: 2 }}>
-              <InputLabel id="demo-simple-select-label">Tax Year</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={taxYear}
-                label="Tax Year"
-                onChange={handleChange}
-                defaultValue={`${new Date().getFullYear() - 1}`}
-              >
-                {getTaxYears().map((e: number) => <MenuItem value={e}>{e}</MenuItem>)}
-              </Select>
-            </FormControl>
+            <TextField
+              InputProps={{
+                readOnly: true,
+              }}
+              id="outlined-disabled"
+              label="Tax Year"
+              sx={{ mr: 2 }}
+              value={taxYear}
+            />
             <FormControl sx={{ mr: 2 }}>
               <TextField
                 InputProps={{
