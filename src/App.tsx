@@ -1,17 +1,16 @@
-import { Provider } from 'react-redux'
-import store from './store'
+import { RecoilRoot } from 'recoil'
 import AppRouter from './AppRouter'
 import Theme from './Components/Theme'
 import './i18n'
 
 const App = () => (
-  <Provider store={store}>
+  <RecoilRoot>
     <div className="App">
       <Theme>
         <AppRouter />
       </Theme>
     </div>
-  </Provider>
+  </RecoilRoot>
 )
 
 export default App

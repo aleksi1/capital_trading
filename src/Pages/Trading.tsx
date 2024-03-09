@@ -25,6 +25,7 @@ import {
   calculateData, calculateTaxableIncome, calculateTaxes, getTaxRate, getTaxYears, getTypeName,
 } from '../Helper/CalculateData'
 import { areas } from '../Helper/ChartData'
+import DarkModeSwitch from '../Components/DarkModeSwitch'
 
 const Trading = () => {
   const [selectedYear, setSelectedYear] = useState<string>(new Date().getFullYear().toString())
@@ -116,7 +117,6 @@ const Trading = () => {
   return (
     <Container maxWidth="lg" sx={{ mt: 10 }}>
       <Card sx={{ marginBottom: '10px', maxWidth: '100%' }}>
-
         <Grid container spacing={2}>
           <Grid item xs={2}>
             <Typography sx={{ m: 2 }} variant="h5" component="div">
@@ -125,18 +125,25 @@ const Trading = () => {
             </Typography>
           </Grid>
           <Grid item xs={2}>
-            <Select
-              labelId="year-select-label"
-              id="year-select"
-              value={selectedYear}
-              label="Year"
-              size="small"
-              sx={{ mt: 2 }}
-              onChange={handleYearChange}
-              defaultValue={`${new Date().getFullYear() - 1}`}
-            >
-              {getTaxYears()?.map((e: number) => <MenuItem key={`tax-year-${e}`} value={e}>{e}</MenuItem>)}
-            </Select>
+            <Grid container>
+              <Grid item xs={6}>
+                <Select
+                  labelId="year-select-label"
+                  id="year-select"
+                  value={selectedYear}
+                  label="Year"
+                  size="small"
+                  sx={{ mt: 2 }}
+                  onChange={handleYearChange}
+                  defaultValue={`${new Date().getFullYear() - 1}`}
+                >
+                  {getTaxYears()?.map((e: number) => <MenuItem key={`tax-year-${e}`} value={e}>{e}</MenuItem>)}
+                </Select>
+              </Grid>
+              <Grid item xs={6} style={{ marginTop: '10px' }}>
+                <DarkModeSwitch />
+              </Grid>
+            </Grid>
           </Grid>
           <Grid item xs={2}>
             <DatePicker
@@ -182,7 +189,6 @@ const Trading = () => {
             </Button>
           </Grid>
         </Grid>
-
       </Card>
 
       {chartData?.length > 0 ? <ProfitChart data={chartData} areas={areas} /> : ''}
