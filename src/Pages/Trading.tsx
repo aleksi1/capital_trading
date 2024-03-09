@@ -290,13 +290,6 @@ const Trading = () => {
               />
             </Grid>
           </Grid>
-        </Box>
-        <Box
-          component="form"
-          sx={{ m: 1 }}
-          noValidate
-          autoComplete="off"
-        >
           <Grid container>
             <Grid item xs={3}>
               <TextField
