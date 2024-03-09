@@ -1,0 +1,115 @@
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
+// the translations
+// (tip move them in a JSON file and import them,
+// or even better, manage them separated from your code: https://react.i18next.com/guides/multiple-translation-files)
+const resources = {
+  en: {
+    translation: {
+      'New thread': 'New thread',
+      Submit: 'Submit',
+      Close: 'Close',
+      Title: 'Title',
+      'Search forums': 'Search forums',
+      Language: 'Language',
+      Reply: 'Reply',
+      Threads: 'Threads',
+      'Dark / light mode': 'Dark / light mode',
+      'My settings': 'My settings',
+      'Sign out': 'Sign out',
+      Cancel: 'Cancel',
+      'Sign in': 'Sign in',
+      Email: 'Email',
+      Username: 'Username',
+      Password: 'Password',
+      'Page you are looking for does not exist.': 'Page you are looking for does not exist.',
+      Save: 'Save',
+      'Username is shown to other users.': 'Username is shown to other users.',
+      'Email verification will be sent to activate new email.': 'Email verification will be sent to activate new email.',
+      'Show my online status to other users.': 'Show my online status to other users.',
+      'Sign in is allowed from selected countries': 'Sign in is allowed from selected countries',
+      Finland: 'Finland',
+      Sweden: 'Sweden',
+      Norway: 'Norway',
+      Denmark: 'Denmark',
+      Iceland: 'Iceland',
+      Home: 'Home',
+    },
+  },
+  fi: {
+    translation: {
+      'New thread': 'Uusi aihe',
+      Submit: 'Lähetä',
+      Close: 'Sulje',
+      Title: 'Otsikko',
+      'Search forums': 'Hae foorumilta',
+      Language: 'Kieli',
+      Reply: 'Vastaa',
+      Threads: 'Aiheet',
+      'Dark / light mode': 'Tumma- / vaalea-tila',
+      'My settings': 'Asetukset',
+      'Sign out': 'Kirjaudu ulos',
+      Cancel: 'Peruuta',
+      'Sign in': 'Kirjaudu sisään',
+      Email: 'Sähköposti',
+      Username: 'Käyttäjätunnus',
+      Password: 'Salasana',
+      'Page you are looking for does not exist.': 'Etsimääsi sivua ei ole olemassa.',
+      Save: 'Tallenna',
+      'Username is shown to other users.': 'Käyttäjätunnus näkyy muille käyttäjille.',
+      'Email verification will be sent to activate new email.': 'Sähköpostivarmennus lähetetään uuden sähköpostin aktivoimiseksi.',
+      'Show my online status to other users.': 'Näytä paikalla-tilani muille käyttäjille.',
+      'Sign in is allowed from selected countries': 'Kirjautuminen on sallittu valituista maista',
+      Finland: 'Suomi',
+      Sweden: 'Ruotsi',
+      Norway: 'Norja',
+      Denmark: 'Tanska',
+      Iceland: 'Islanti',
+      Home: 'Etusivu',
+    },
+  },
+  se: {
+    translation: {
+      'New thread': 'Ny tråd',
+      Submit: 'Submit',
+      Close: 'Stäng',
+      Title: 'Titel',
+      'Search forums': 'Sök i forum',
+      Language: 'Språk',
+      Reply: 'Svar',
+      Threads: 'Trådar',
+      'Dark / light mode': 'Mörkt / ljust läge',
+      'My settings': 'Mina inställningar',
+      'Sign out': 'Logga ut',
+      Cancel: 'Avbryt',
+      'Sign in': 'Logga in',
+      Email: 'E-post',
+      Username: 'Användarnamn',
+      Password: 'Lösenord',
+      'Page you are looking for does not exist.': 'Sidan du söker finns inte.',
+      Save: 'Spara',
+      'Username is shown to other users.': 'Användarnamn visas för andra användare',
+      'Email verification will be sent to activate new email.': 'E-postbekräftelse kommer att skickas för att aktivera ny e-post.',
+      'Show my online status to other users.': 'Visa min online-status för andra användare.',
+      'Sign in is allowed from selected countries': 'Det är tillåtet att logga in från utvalda länder',
+      Finland: 'Finland',
+      Sweden: 'Sverige',
+      Norway: 'Norge',
+      Denmark: 'Danmark',
+      Iceland: 'Island',
+    },
+  },
+}
+i18n
+  .use(initReactI18next) // passes i18n down to react-i18next
+  .init({
+    resources,
+    lng: localStorage.getItem('language') ?? 'fi',
+    // language to use, more information here: https://www.i18next.com/overview/configuration-options#languages-namespaces-resources
+    // you can use the i18n.changeLanguage function to change the language manually: https://www.i18next.com/overview/api#changelanguage
+    // if you're using a language detector, do not define the lng option
+    interpolation: {
+      escapeValue: false, // react already safes from xss
+    },
+  })
+export default i18n
