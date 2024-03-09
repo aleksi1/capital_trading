@@ -59,7 +59,7 @@ const Simulator = () => {
       <Container maxWidth="lg" sx={{ mt: 10 }}>
         <Card sx={{ marginBottom: '10px', maxWidth: '100%' }}>
           <Grid container spacing={2}>
-            <Grid item xs={10}>
+            <Grid xs={10}>
               <Typography sx={{ m: 2 }} variant="h5" component="div">
                 <ShowChartIcon sx={{ verticalAlign: 'middle' }} />
                 <Link href="/" style={{ textDecoration: 'none' }}>{' Trading'}</Link>
@@ -125,15 +125,15 @@ const Simulator = () => {
         {tableData.map((value: any) => (
           <Card sx={{ margin: '10px 0', maxWidth: '100%' }}>
             <Grid container spacing={2}>
-              <Grid item style={{ marginRight: '5px' }}>
+              <Grid style={{ marginRight: '5px' }}>
                 <Chip color="info" label={value.index} />
               </Grid>
-              <Grid item xs={1}>
+              <Grid xs={1}>
                 {value.success
                   ? <Chip color="success" label={value.change} />
                   : <Chip color="error" label={value.change} /> }
               </Grid>
-              <Grid item xs={2}>
+              <Grid md={2}>
                 {value.amount}
               </Grid>
             </Grid>

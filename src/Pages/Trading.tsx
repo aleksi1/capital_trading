@@ -1,7 +1,8 @@
 import { useHistory } from 'react-router-dom'
 import {
-  Box, Button, Card, Chip, FormControl, Grid, MenuItem, Select, SelectChangeEvent, TextField,
+  Box, Button, Card, Chip, FormControl, MenuItem, Select, SelectChangeEvent, TextField,
 } from '@mui/material'
+import Grid from '@mui/material/Unstable_Grid2'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import ShowChartIcon from '@mui/icons-material/ShowChart'
@@ -118,15 +119,15 @@ const Trading = () => {
     <Container maxWidth="lg" sx={{ mt: 10 }}>
       <Card sx={{ marginBottom: '10px', maxWidth: '100%' }}>
         <Grid container spacing={2}>
-          <Grid item xs={2}>
+          <Grid md={2}>
             <Typography sx={{ m: 2 }} variant="h5" component="div">
               <ShowChartIcon sx={{ verticalAlign: 'middle' }} />
               {' Trading'}
             </Typography>
           </Grid>
-          <Grid item xs={2}>
+          <Grid md={2}>
             <Grid container>
-              <Grid item xs={6}>
+              <Grid md={2}>
                 <Select
                   labelId="year-select-label"
                   id="year-select"
@@ -140,12 +141,12 @@ const Trading = () => {
                   {getTaxYears()?.map((e: number) => <MenuItem key={`tax-year-${e}`} value={e}>{e}</MenuItem>)}
                 </Select>
               </Grid>
-              <Grid item xs={6} style={{ marginTop: '10px' }}>
+              <Grid md={2} style={{ marginTop: '10px' }}>
                 <DarkModeSwitch />
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={2}>
+          <Grid md={2}>
             <DatePicker
               selected={startDate}
               onChange={(date: Date) => setStartDate(date)}
@@ -157,7 +158,7 @@ const Trading = () => {
               customInput={<DatePickerCustomInput />}
             />
           </Grid>
-          <Grid item xs={2}>
+          <Grid md={2}>
             <DatePicker
               selected={endDate}
               onChange={(date: Date) => setEndDate(date)}
@@ -168,10 +169,10 @@ const Trading = () => {
               customInput={<DatePickerCustomInput />}
             />
           </Grid>
-          <Grid item xs={2} sx={{ mt: 2 }}>
+          <Grid md={2} sx={{ mt: 2 }}>
             <Button variant="outlined" onClick={() => history.push('/#/simulator')}>Simulator</Button>
           </Grid>
-          <Grid item xs={2}>
+          <Grid md={2}>
             {' '}
             <Button
               variant="contained"
@@ -207,7 +208,7 @@ const Trading = () => {
           autoComplete="off"
         >
           <Grid container>
-            <Grid item xs={3}>
+            <Grid md={3}>
               <TextField
                 InputProps={{
                   readOnly: true,
@@ -217,7 +218,7 @@ const Trading = () => {
                 value={` ${roundTo(accountDetails?.balance, 2)} € `}
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid md={3}>
               <TextField
                 InputProps={{
                   readOnly: true,
@@ -227,7 +228,7 @@ const Trading = () => {
                 value={` ${accountDetails?.winningTrades} (${roundTo(accountDetails?.wins, 2)} €) `}
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid md={3}>
               <TextField
                 InputProps={{
                   readOnly: true,
@@ -237,7 +238,7 @@ const Trading = () => {
                 value={` ${accountDetails?.losingTrades} (${roundTo(accountDetails?.losses, 2)} €)`}
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid md={3}>
               <TextField
                 InputProps={{
                   readOnly: true,
@@ -249,7 +250,7 @@ const Trading = () => {
             </Grid>
           </Grid>
           <Grid container>
-            <Grid item xs={3}>
+            <Grid md={3}>
               <TextField
                 InputProps={{
                   readOnly: true,
@@ -259,7 +260,7 @@ const Trading = () => {
                 value={` ${roundTo(accountDetails?.averageWinPercentage, 2)} %`}
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid md={3}>
               <TextField
                 InputProps={{
                   readOnly: true,
@@ -269,7 +270,7 @@ const Trading = () => {
                 value={` ${roundTo(accountDetails?.averageLossPercentage, 2)} %`}
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid md={3}>
               <TextField
                 InputProps={{
                   readOnly: true,
@@ -279,7 +280,7 @@ const Trading = () => {
                 value={` ${roundTo(accountDetails?.successRate, 2)} %`}
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid md={3}>
               <TextField
                 InputProps={{
                   readOnly: true,
@@ -291,7 +292,7 @@ const Trading = () => {
             </Grid>
           </Grid>
           <Grid container>
-            <Grid item xs={3}>
+            <Grid md={3}>
               <TextField
                 InputProps={{
                   readOnly: true,
@@ -302,7 +303,7 @@ const Trading = () => {
                 value={taxYear}
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid md={3}>
               <FormControl>
                 <TextField
                   InputProps={{
@@ -314,7 +315,7 @@ const Trading = () => {
                 />
               </FormControl>
             </Grid>
-            <Grid item xs={3}>
+            <Grid md={3}>
               <FormControl>
                 <TextField
                   InputProps={{
@@ -326,7 +327,7 @@ const Trading = () => {
                 />
               </FormControl>
             </Grid>
-            <Grid item xs={3}>
+            <Grid md={3}>
               <FormControl>
                 <TextField
                   InputProps={{
