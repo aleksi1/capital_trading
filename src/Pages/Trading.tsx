@@ -206,74 +206,90 @@ const Trading = () => {
           noValidate
           autoComplete="off"
         >
-          <div>
-            <TextField
-              InputProps={{
-                readOnly: true,
-              }}
-              id="outlined-disabled"
-              label="Balance"
-              value={` ${roundTo(accountDetails?.balance, 2)} € `}
-            />
-
-            <TextField
-              InputProps={{
-                readOnly: true,
-              }}
-              id="outlined-disabled"
-              label="Wins"
-              value={` ${accountDetails?.winningTrades} (${roundTo(accountDetails?.wins, 2)} €) `}
-            />
-
-            <TextField
-              InputProps={{
-                readOnly: true,
-              }}
-              id="outlined-disabled"
-              label="Losses"
-              value={` ${accountDetails?.losingTrades} (${roundTo(accountDetails?.losses, 2)} €)`}
-            />
-            <TextField
-              InputProps={{
-                readOnly: true,
-              }}
-              id="outlined-disabled"
-              label="Deposits"
-              value={` ${roundTo(accountDetails?.deposits, 2)} €`}
-            />
-            <TextField
-              InputProps={{
-                readOnly: true,
-              }}
-              id="outlined-disabled"
-              label="Average win %"
-              value={` ${roundTo(accountDetails?.averageWinPercentage, 2)} %`}
-            />
-            <TextField
-              InputProps={{
-                readOnly: true,
-              }}
-              id="outlined-disabled"
-              label="Average loss %"
-              value={` ${roundTo(accountDetails?.averageLossPercentage, 2)} %`}
-            />
-            <TextField
-              InputProps={{
-                readOnly: true,
-              }}
-              id="outlined-disabled"
-              label="Success rate %"
-              value={` ${roundTo(accountDetails?.successRate, 2)} %`}
-            />
-            <TextField
-              InputProps={{
-                readOnly: true,
-              }}
-              id="outlined-disabled"
-              label="Fees"
-              value={` ${roundTo(accountDetails?.fees, 2) * -1} €`}
-            />
-          </div>
+          <Grid container>
+            <Grid item xs={3}>
+              <TextField
+                InputProps={{
+                  readOnly: true,
+                }}
+                id="outlined-disabled"
+                label="Balance"
+                value={` ${roundTo(accountDetails?.balance, 2)} € `}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <TextField
+                InputProps={{
+                  readOnly: true,
+                }}
+                id="outlined-disabled"
+                label="Wins"
+                value={` ${accountDetails?.winningTrades} (${roundTo(accountDetails?.wins, 2)} €) `}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <TextField
+                InputProps={{
+                  readOnly: true,
+                }}
+                id="outlined-disabled"
+                label="Losses"
+                value={` ${accountDetails?.losingTrades} (${roundTo(accountDetails?.losses, 2)} €)`}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <TextField
+                InputProps={{
+                  readOnly: true,
+                }}
+                id="outlined-disabled"
+                label="Deposits"
+                value={` ${roundTo(accountDetails?.deposits, 2)} €`}
+              />
+            </Grid>
+          </Grid>
+          <Grid container>
+            <Grid item xs={3}>
+              <TextField
+                InputProps={{
+                  readOnly: true,
+                }}
+                id="outlined-disabled"
+                label="Average win %"
+                value={` ${roundTo(accountDetails?.averageWinPercentage, 2)} %`}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <TextField
+                InputProps={{
+                  readOnly: true,
+                }}
+                id="outlined-disabled"
+                label="Average loss %"
+                value={` ${roundTo(accountDetails?.averageLossPercentage, 2)} %`}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <TextField
+                InputProps={{
+                  readOnly: true,
+                }}
+                id="outlined-disabled"
+                label="Success rate %"
+                value={` ${roundTo(accountDetails?.successRate, 2)} %`}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <TextField
+                InputProps={{
+                  readOnly: true,
+                }}
+                id="outlined-disabled"
+                label="Fees"
+                value={` ${roundTo(accountDetails?.fees, 2) * -1} €`}
+              />
+            </Grid>
+          </Grid>
         </Box>
         <Box
           component="form"
@@ -281,45 +297,55 @@ const Trading = () => {
           noValidate
           autoComplete="off"
         >
-          <TextField
-            InputProps={{
-              readOnly: true,
-            }}
-            id="outlined-disabled"
-            label="Tax Year"
-            sx={{ mr: 2 }}
-            value={taxYear}
-          />
-          <FormControl sx={{ mr: 2 }}>
-            <TextField
-              InputProps={{
-                readOnly: true,
-              }}
-              id="outlined-disabled"
-              label={`Taxeable income in year ${taxYear ?? ''}`}
-              value={` ${roundTo(calculateTaxableIncome(uploadedResults, taxYear), 2)} €`}
-            />
-          </FormControl>
-          <FormControl sx={{ mr: 2 }}>
-            <TextField
-              InputProps={{
-                readOnly: true,
-              }}
-              id="outlined-disabled"
-              label={`Payable taxes in year ${taxYear ?? ''}`}
-              value={` ${roundTo(calculateTaxes(uploadedResults, taxYear), 2)} €`}
-            />
-          </FormControl>
-          <FormControl sx={{ mr: 2 }}>
-            <TextField
-              InputProps={{
-                readOnly: true,
-              }}
-              id="outlined-disabled"
-              label={`Tax rate in year ${taxYear ?? ''}`}
-              value={` ${getTaxRate(uploadedResults, taxYear) * 100} %`}
-            />
-          </FormControl>
+          <Grid container>
+            <Grid item xs={3}>
+              <TextField
+                InputProps={{
+                  readOnly: true,
+                }}
+                id="outlined-disabled"
+                label="Tax Year"
+                sx={{ mr: 2 }}
+                value={taxYear}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <FormControl>
+                <TextField
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  id="outlined-disabled"
+                  label={`Taxeable income in year ${taxYear ?? ''}`}
+                  value={` ${roundTo(calculateTaxableIncome(uploadedResults, taxYear), 2)} €`}
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={3}>
+              <FormControl>
+                <TextField
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  id="outlined-disabled"
+                  label={`Payable taxes in year ${taxYear ?? ''}`}
+                  value={` ${roundTo(calculateTaxes(uploadedResults, taxYear), 2)} €`}
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={3}>
+              <FormControl>
+                <TextField
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  id="outlined-disabled"
+                  label={`Tax rate in year ${taxYear ?? ''}`}
+                  value={` ${getTaxRate(uploadedResults, taxYear) * 100} %`}
+                />
+              </FormControl>
+            </Grid>
+          </Grid>
         </Box>
       </Card>
 
