@@ -151,6 +151,8 @@ const Trading = () => {
               selected={startDate}
               onChange={(date: Date) => setStartDate(date)}
               selectsStart
+              showMonthDropdown
+              showYearDropdown
               startDate={startDate}
               endDate={endDate}
               customInput={<DatePickerCustomInput />}
