@@ -61,12 +61,13 @@ export const calculateData = (uploadedResults: any, startDate: Date, endDate: Da
 
     if (date >= startDate && date <= endDate) {
       const isTrade = type === 'trade'
+      const isFee = ['swap', 'corporate_action'].includes(type)
       const isNonTrade = ['trade_correction', 'swap', 'corporate_action'].includes(type)
       const isDeposit = ['demo_transfer', 'deposit'].includes(type)
       d.Percentage = !isDeposit ? calculatePercentage(amount, parseFloat(d.Balance)) : ''
       rowValues.push(Object.values(d))
 
-      if (isNonTrade) {
+      if (isFee && amount < 0) {
         newAccountDetails.fees += amount
       }
 
