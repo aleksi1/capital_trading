@@ -24,6 +24,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import {
   calculateData, calculateTaxableIncome, calculateTaxes, getTaxRate, getTaxYears, getTypeName,
 } from '../Helper/CalculateData'
+import { areas } from '../Helper/ChartData'
 
 const Trading = () => {
   const [selectedYear, setSelectedYear] = useState<string>(new Date().getFullYear().toString())
@@ -111,15 +112,6 @@ const Trading = () => {
     }
     return <div style={{ color: 'red', fontWeight: 'bold' }}>{`${amount}${suffix}`}</div>
   }
-
-  const areas = [
-    {
-      dataKey: 'Balance',
-      stackId: '1',
-      stroke: '#1a75ff',
-      fill: '#1a75ff',
-    },
-  ]
 
   return (
     <Container maxWidth="lg" sx={{ mt: 10 }}>

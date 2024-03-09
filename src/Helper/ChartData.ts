@@ -68,3 +68,12 @@ export const parseChartData = (intervalType: IntervalType, dataArray: ChartData[
   })
   return result
 }
+
+export const areas = [
+  {
+    dataKey: 'Balance',
+    stackId: '1',
+    stroke: '#1a75ff',
+    fill: '#1a75ff',
+  },
+]
