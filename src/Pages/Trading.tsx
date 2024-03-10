@@ -142,6 +142,8 @@ const Trading = () => {
                 selected={endDate}
                 onChange={(date: Date) => setEndDate(date)}
                 selectsEnd
+                showMonthDropdown
+                showYearDropdown
                 startDate={startDate}
                 endDate={endDate}
                 minDate={startDate}
