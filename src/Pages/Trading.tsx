@@ -125,26 +125,26 @@ const Trading = () => {
               {' Trading'}
             </Typography>
           </Grid>
+          <Grid md={8} />
           <Grid md={2}>
-            <Grid container>
-              <Grid md={2}>
-                <Select
-                  labelId="year-select-label"
-                  id="year-select"
-                  value={selectedYear}
-                  label="Year"
-                  size="small"
-                  sx={{ mt: 2 }}
-                  onChange={handleYearChange}
-                  defaultValue={`${new Date().getFullYear() - 1}`}
-                >
-                  {getTaxYears()?.map((e: number) => <MenuItem key={`tax-year-${e}`} value={e}>{e}</MenuItem>)}
-                </Select>
-              </Grid>
-              <Grid md={2} style={{ marginTop: '10px' }}>
-                <DarkModeSwitch />
-              </Grid>
-            </Grid>
+            <DarkModeSwitch />
+          </Grid>
+        </Grid>
+        <Grid container spacing={2} sx={{ marginBottom: '10px' }}>
+          <Grid md={2} />
+          <Grid md={2}>
+            <Select
+              labelId="year-select-label"
+              id="year-select"
+              value={selectedYear}
+              label="Year"
+              size="small"
+              sx={{ mt: 2 }}
+              onChange={handleYearChange}
+              defaultValue={`${new Date().getFullYear() - 1}`}
+            >
+              {getTaxYears()?.map((e: number) => <MenuItem key={`tax-year-${e}`} value={e}>{e}</MenuItem>)}
+            </Select>
           </Grid>
           <Grid md={2}>
             <DatePicker
