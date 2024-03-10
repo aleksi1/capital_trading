@@ -151,7 +151,7 @@ const Trading = () => {
           </Grid>
           <Grid md={3} />
           <Grid md={3}>
-            <Stack direction="row" spacing={2}>
+            <Stack direction="row" spacing={2} justifyContent="end" sx={{ pr: 3 }}>
               <Button
                 variant="contained"
                 component="label"

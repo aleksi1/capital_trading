@@ -42,7 +42,7 @@ export const Layout = (props: any) => {
                 Simulator
               </Button>
             </Box>
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} justifyContent="end">
               <DarkModeSwitch />
             </Box>
           </Toolbar>
