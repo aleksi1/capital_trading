@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom'
 import {
-  Box, Button, Card, Chip, FormControl, MenuItem, Select, SelectChangeEvent, TextField,
+  Box, Button, Card, Chip, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Stack, TextField,
 } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import Container from '@mui/material/Container'
@@ -34,13 +34,12 @@ const Trading = () => {
   const [endDate, setEndDate] = useState<Date>(new Date())
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const DatePickerCustomInput = forwardRef(({ value, onClick }: any, ref: any) => (
+  const DatePickerCustomInput = forwardRef(({ value, onClick, label }: any, ref: any) => (
     <TextField
       id="outlined-basic"
-      sx={{ mt: 2 }}
       size="small"
       value={value}
-      label=""
+      label={label}
       variant="outlined"
       onClick={onClick}
       ref={ref}
@@ -127,67 +126,67 @@ const Trading = () => {
           </Grid>
           <Grid md={8} />
           <Grid md={2}>
-            <DarkModeSwitch />
+            <Grid container justifyContent="flex-end">
+              <DarkModeSwitch />
+            </Grid>
           </Grid>
         </Grid>
         <Grid container spacing={2} sx={{ marginBottom: '10px' }}>
-          <Grid md={2} />
-          <Grid md={2}>
-            <Select
-              labelId="year-select-label"
-              id="year-select"
-              value={selectedYear}
-              label="Year"
-              size="small"
-              sx={{ mt: 2 }}
-              onChange={handleYearChange}
-              defaultValue={`${new Date().getFullYear() - 1}`}
-            >
-              {getTaxYears()?.map((e: number) => <MenuItem key={`tax-year-${e}`} value={e}>{e}</MenuItem>)}
-            </Select>
-          </Grid>
-          <Grid md={2}>
-            <DatePicker
-              selected={startDate}
-              onChange={(date: Date) => setStartDate(date)}
-              selectsStart
-              showMonthDropdown
-              showYearDropdown
-              startDate={startDate}
-              endDate={endDate}
-              customInput={<DatePickerCustomInput />}
-            />
-          </Grid>
-          <Grid md={2}>
-            <DatePicker
-              selected={endDate}
-              onChange={(date: Date) => setEndDate(date)}
-              selectsEnd
-              startDate={startDate}
-              endDate={endDate}
-              minDate={startDate}
-              customInput={<DatePickerCustomInput />}
-            />
-          </Grid>
-          <Grid md={2} sx={{ mt: 2 }}>
-            <Button variant="outlined" onClick={() => history.push('/#/simulator')}>Simulator</Button>
-          </Grid>
-          <Grid md={2}>
-            {' '}
-            <Button
-              variant="contained"
-              component="label"
-              style={{ marginTop: '15px' }}
-            >
-              Upload File
-              <input
-                type="file"
-                name="file"
-                onChange={changeHandler}
-                accept=".csv"
-                style={{ display: 'none' }}
+          <Grid md={6} sx={{ paddingLeft: '30px' }}>
+            <Stack direction="row" spacing={2}>
+              <FormControl sx={{ margin: 0, minWidth: 120 }}>
+                <InputLabel id="year-select-helper-label">Year</InputLabel>
+                <Select
+                  labelId="year-select-label"
+                  id="year-select"
+                  value={selectedYear}
+                  label="Year"
+                  size="small"
+                  onChange={handleYearChange}
+                  defaultValue={`${new Date().getFullYear() - 1}`}
+                >
+                  {getTaxYears()?.map((e: number) => <MenuItem key={`tax-year-${e}`} value={e}>{e}</MenuItem>)}
+                </Select>
+              </FormControl>
+              <DatePicker
+                selected={startDate}
+                onChange={(date: Date) => setStartDate(date)}
+                selectsStart
+                showMonthDropdown
+                showYearDropdown
+                startDate={startDate}
+                endDate={endDate}
+                customInput={<DatePickerCustomInput label="Start date" />}
               />
-            </Button>
+              <DatePicker
+                selected={endDate}
+                onChange={(date: Date) => setEndDate(date)}
+                selectsEnd
+                startDate={startDate}
+                endDate={endDate}
+                minDate={startDate}
+                customInput={<DatePickerCustomInput label="End date" />}
+              />
+            </Stack>
+          </Grid>
+          <Grid md={3} />
+          <Grid md={3}>
+            <Stack direction="row" spacing={2}>
+              <Button variant="outlined" onClick={() => history.push('/#/simulator')}>Simulator</Button>
+              <Button
+                variant="contained"
+                component="label"
+              >
+                Upload File
+                <input
+                  type="file"
+                  name="file"
+                  onChange={changeHandler}
+                  accept=".csv"
+                  style={{ display: 'none' }}
+                />
+              </Button>
+            </Stack>
           </Grid>
         </Grid>
       </Card>
