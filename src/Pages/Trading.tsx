@@ -118,13 +118,13 @@ const Trading = () => {
     <Container maxWidth="lg" sx={{ mt: 10 }}>
       <Card sx={{ marginBottom: '10px', maxWidth: '100%' }}>
         <Grid container spacing={2}>
-          <Grid md={2}>
+          <Grid md={4}>
             <Typography sx={{ m: 2 }} variant="h5" component="div">
               <ShowChartIcon sx={{ verticalAlign: 'middle' }} />
-              {' Trading'}
+              {' Capital Trading'}
             </Typography>
           </Grid>
-          <Grid md={8} />
+          <Grid md={6} />
           <Grid md={2}>
             <Grid container justifyContent="flex-end">
               <DarkModeSwitch />
