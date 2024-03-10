@@ -27,4 +27,4 @@ export const formatNumber = (n: number) => {
   return numberFormatter.format(roundTo(n, 2))
 }
 
-export const rootPath = '/capital_trading/'
+export const rootPath = '/capital_trading'

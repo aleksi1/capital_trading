@@ -67,7 +67,7 @@ const DarkModeSwitch = () => {
     setColorMode(event.target.checked ? 'dark' : 'light')
   }
   return (
-    <Tooltip title={t('Dark / light mode') ?? ''}>
+    <Tooltip title={<>{t('Dark / light mode') ?? ''}</>}>
       <FormGroup sx={{ verticalAlign: 'middle' }}>
         <FormControlLabel
           control={(

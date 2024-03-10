@@ -1,10 +1,9 @@
 import {
-  Box, Button, Card, Chip, Grid, Link, TextField, Typography,
+  Box, Button, Card, Chip, Table, TableBody, TableCell, TableHead, TableRow, TextField,
 } from '@mui/material'
-import Container from '@mui/material/Container'
 import { ChangeEvent, useEffect, useState } from 'react'
-import ShowChartIcon from '@mui/icons-material/ShowChart'
 import { formatNumber } from '../Helper/Helper'
+import { Layout } from '../Components/Layout'
 
 const Simulator = () => {
   const initialSettings = {
@@ -56,90 +55,92 @@ const Simulator = () => {
 
   return (
     <>
-      <Container maxWidth="lg" sx={{ mt: 10 }}>
+      <Layout>
         <Card sx={{ marginBottom: '10px', maxWidth: '100%' }}>
-          <Grid container spacing={2}>
-            <Grid xs={10}>
-              <Typography sx={{ m: 2 }} variant="h5" component="div">
-                <ShowChartIcon sx={{ verticalAlign: 'middle' }} />
-                <Link href="/" style={{ textDecoration: 'none' }}>{' Trading'}</Link>
-                {' / Simulator'}
-              </Typography>
-            </Grid>
-          </Grid>
+          <Box
+            component="form"
+            sx={{
+              '& .MuiTextField-root': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <div>
+              <TextField
+                id="outlined-disabled"
+                label="Initial deposit"
+                name="initialDeposit"
+                value={settings.initialDeposit}
+                onChange={onChange}
+              />
+              <TextField
+                id="outlined-disabled"
+                label="Trades"
+                name="trades"
+                value={settings.trades}
+                onChange={onChange}
+              />
+              <TextField
+                id="outlined-disabled"
+                label="Take profit"
+                name="takeProfit"
+                value={settings.takeProfit}
+                onChange={onChange}
+              />
+              <TextField
+                id="outlined-disabled"
+                label="Stop loss"
+                name="stopLoss"
+                value={settings.stopLoss}
+                onChange={onChange}
+              />
+              <TextField
+                id="outlined-disabled"
+                label="Estimated success rate"
+                name="estimatedSuccessRate"
+                value={settings.estimatedSuccessRate}
+                onChange={onChange}
+              />
+              <Button
+                variant="contained"
+                component="label"
+                style={{ marginTop: '15px' }}
+                onClick={onClick}
+              >
+                Simulate
+              </Button>
+            </div>
+          </Box>
         </Card>
-        <Box
-          component="form"
-          sx={{
-            '& .MuiTextField-root': { m: 1, width: '25ch' },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <div>
-            <TextField
-              id="outlined-disabled"
-              label="Initial deposit"
-              name="initialDeposit"
-              value={settings.initialDeposit}
-              onChange={onChange}
-            />
-            <TextField
-              id="outlined-disabled"
-              label="Trades"
-              name="trades"
-              value={settings.trades}
-              onChange={onChange}
-            />
-            <TextField
-              id="outlined-disabled"
-              label="Take profit"
-              name="takeProfit"
-              value={settings.takeProfit}
-              onChange={onChange}
-            />
-            <TextField
-              id="outlined-disabled"
-              label="Stop loss"
-              name="stopLoss"
-              value={settings.stopLoss}
-              onChange={onChange}
-            />
-            <TextField
-              id="outlined-disabled"
-              label="Estimated success rate"
-              name="estimatedSuccessRate"
-              value={settings.estimatedSuccessRate}
-              onChange={onChange}
-            />
-            <Button
-              variant="contained"
-              component="label"
-              style={{ marginTop: '15px' }}
-              onClick={onClick}
-            >
-              Simulate
-            </Button>
-          </div>
-        </Box>
-        {tableData.map((value: any) => (
-          <Card sx={{ margin: '10px 0', maxWidth: '100%' }}>
-            <Grid container spacing={2}>
-              <Grid style={{ marginRight: '5px' }}>
-                <Chip color="info" label={value.index} />
-              </Grid>
-              <Grid xs={1}>
-                {value.success
-                  ? <Chip color="success" label={value.change} />
-                  : <Chip color="error" label={value.change} /> }
-              </Grid>
-              <Grid md={2}>
-                {value.amount}
-              </Grid>
-            </Grid>
-          </Card>
-        ))}
-      </Container>
+        <Card sx={{ marginBottom: '10px', maxWidth: '100%' }}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Trade</TableCell>
+                <TableCell>Change</TableCell>
+                <TableCell>Amount</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {tableData.map((value: any) => (
+                <TableRow>
+                  <TableCell>
+                    <Chip color="info" label={value.index} />
+                  </TableCell>
+                  <TableCell>
+                    {value.success
+                      ? <Chip color="success" label={value.change} />
+                      : <Chip color="error" label={value.change} /> }
+                  </TableCell>
+                  <TableCell>
+                    {value.amount}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Card>
+      </Layout>
     </>
   )
 }

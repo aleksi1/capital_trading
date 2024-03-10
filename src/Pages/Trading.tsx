@@ -1,11 +1,8 @@
-import { useHistory } from 'react-router-dom'
 import {
   Box, Button, Card, Chip, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Stack, TextField,
 } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
-import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
-import ShowChartIcon from '@mui/icons-material/ShowChart'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -26,7 +23,7 @@ import {
   calculateData, calculateTaxableIncome, calculateTaxes, getTaxRate, getTaxYears, getTypeName,
 } from '../Helper/CalculateData'
 import { areas } from '../Helper/ChartData'
-import DarkModeSwitch from '../Components/DarkModeSwitch'
+import { Layout } from '../Components/Layout'
 
 const Trading = () => {
   const [selectedYear, setSelectedYear] = useState<string>(new Date().getFullYear().toString())
@@ -45,9 +42,6 @@ const Trading = () => {
       ref={ref}
     />
   ))
-
-  const history = useHistory()
-
   const [uploadedResults, setUploadedResults] = useState<any>()
   const [columnNames, setColumnNames] = useState([])
   const [accountDetails, setAccountDetails] = useState<AccountDetails>({
@@ -115,22 +109,8 @@ const Trading = () => {
   }
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 10 }}>
-      <Card sx={{ marginBottom: '10px', maxWidth: '100%' }}>
-        <Grid container spacing={2}>
-          <Grid md={4}>
-            <Typography sx={{ m: 2 }} variant="h5" component="div">
-              <ShowChartIcon sx={{ verticalAlign: 'middle' }} />
-              {' Capital Trading'}
-            </Typography>
-          </Grid>
-          <Grid md={6} />
-          <Grid md={2}>
-            <Grid container justifyContent="flex-end">
-              <DarkModeSwitch />
-            </Grid>
-          </Grid>
-        </Grid>
+    <Layout>
+      <Card sx={{ paddingTop: '10px', marginBottom: '20px', maxWidth: '100%' }}>
         <Grid container spacing={2} sx={{ marginBottom: '10px' }}>
           <Grid md={6} sx={{ paddingLeft: '30px' }}>
             <Stack direction="row" spacing={2}>
@@ -172,7 +152,6 @@ const Trading = () => {
           <Grid md={3} />
           <Grid md={3}>
             <Stack direction="row" spacing={2}>
-              <Button variant="outlined" onClick={() => history.push('/#/simulator')}>Simulator</Button>
               <Button
                 variant="contained"
                 component="label"
@@ -384,7 +363,7 @@ const Trading = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </Container>
+    </Layout>
   )
 }
 
