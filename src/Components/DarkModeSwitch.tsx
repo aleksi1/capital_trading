@@ -67,6 +67,7 @@ const DarkModeSwitch = () => {
     setColorMode(event.target.checked ? 'dark' : 'light')
   }
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <Tooltip title={<>{t('Dark / light mode') ?? ''}</>}>
       <FormGroup sx={{ verticalAlign: 'middle' }}>
         <FormControlLabel

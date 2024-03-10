@@ -54,94 +54,92 @@ const Simulator = () => {
   }
 
   return (
-    <>
-      <Layout>
-        <Card sx={{ marginBottom: '10px', maxWidth: '100%' }}>
-          <Box
-            component="form"
-            sx={{
-              '& .MuiTextField-root': { m: 1, width: '25ch' },
-            }}
-            noValidate
-            autoComplete="off"
-          >
-            <div>
-              <TextField
-                id="outlined-disabled"
-                label="Initial deposit"
-                name="initialDeposit"
-                value={settings.initialDeposit}
-                onChange={onChange}
-              />
-              <TextField
-                id="outlined-disabled"
-                label="Trades"
-                name="trades"
-                value={settings.trades}
-                onChange={onChange}
-              />
-              <TextField
-                id="outlined-disabled"
-                label="Take profit"
-                name="takeProfit"
-                value={settings.takeProfit}
-                onChange={onChange}
-              />
-              <TextField
-                id="outlined-disabled"
-                label="Stop loss"
-                name="stopLoss"
-                value={settings.stopLoss}
-                onChange={onChange}
-              />
-              <TextField
-                id="outlined-disabled"
-                label="Estimated success rate"
-                name="estimatedSuccessRate"
-                value={settings.estimatedSuccessRate}
-                onChange={onChange}
-              />
-              <Button
-                variant="contained"
-                component="label"
-                style={{ marginTop: '15px' }}
-                onClick={onClick}
-              >
-                Simulate
-              </Button>
-            </div>
-          </Box>
-        </Card>
-        <Card sx={{ marginBottom: '10px', maxWidth: '100%' }}>
-          <Table>
-            <TableHead>
+    <Layout>
+      <Card sx={{ marginBottom: '10px', maxWidth: '100%' }}>
+        <Box
+          component="form"
+          sx={{
+            '& .MuiTextField-root': { m: 1, width: '25ch' },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <div>
+            <TextField
+              id="outlined-disabled"
+              label="Initial deposit"
+              name="initialDeposit"
+              value={settings.initialDeposit}
+              onChange={onChange}
+            />
+            <TextField
+              id="outlined-disabled"
+              label="Trades"
+              name="trades"
+              value={settings.trades}
+              onChange={onChange}
+            />
+            <TextField
+              id="outlined-disabled"
+              label="Take profit"
+              name="takeProfit"
+              value={settings.takeProfit}
+              onChange={onChange}
+            />
+            <TextField
+              id="outlined-disabled"
+              label="Stop loss"
+              name="stopLoss"
+              value={settings.stopLoss}
+              onChange={onChange}
+            />
+            <TextField
+              id="outlined-disabled"
+              label="Estimated success rate"
+              name="estimatedSuccessRate"
+              value={settings.estimatedSuccessRate}
+              onChange={onChange}
+            />
+            <Button
+              variant="contained"
+              component="label"
+              style={{ marginTop: '15px' }}
+              onClick={onClick}
+            >
+              Simulate
+            </Button>
+          </div>
+        </Box>
+      </Card>
+      <Card sx={{ marginBottom: '10px', maxWidth: '100%' }}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Trade</TableCell>
+              <TableCell>Change</TableCell>
+              <TableCell>Amount</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {tableData.map((value: any) => (
               <TableRow>
-                <TableCell>Trade</TableCell>
-                <TableCell>Change</TableCell>
-                <TableCell>Amount</TableCell>
+                <TableCell>
+                  <Chip color="info" label={value.index} />
+                </TableCell>
+                <TableCell>
+                  {value.success
+                    ? <Chip color="success" label={value.change} />
+                    : <Chip color="error" label={value.change} /> }
+                </TableCell>
+                <TableCell>
+                  {value.amount}
+                </TableCell>
               </TableRow>
-            </TableHead>
-            <TableBody>
-              {tableData.map((value: any) => (
-                <TableRow>
-                  <TableCell>
-                    <Chip color="info" label={value.index} />
-                  </TableCell>
-                  <TableCell>
-                    {value.success
-                      ? <Chip color="success" label={value.change} />
-                      : <Chip color="error" label={value.change} /> }
-                  </TableCell>
-                  <TableCell>
-                    {value.amount}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </Card>
-      </Layout>
-    </>
+            ))}
+          </TableBody>
+        </Table>
+      </Card>
+    </Layout>
   )
 }
 

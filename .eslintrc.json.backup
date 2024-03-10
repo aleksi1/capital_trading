@@ -8,10 +8,15 @@
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
         "plugin:import/errors",
         "plugin:import/warnings",
         "plugin:import/typescript",
         "airbnb"
+    ],
+    "ignorePatterns": [
+        "dist",
+        ".eslintrc.cjs"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -22,16 +27,22 @@
         "sourceType": "module"
     },
     "plugins": [
+        "react-refresh",
         "react",
         "@typescript-eslint"
     ],
     "rules": {
-        "react/function-component-definition": "off",
+        "react-refresh/only-export-components": [
+            "warn",
+            {
+                "allowConstantExport": true
+            }
+        ],
         "@typescript-eslint/no-explicit-any": "off",
         "max-len": [
             "error",
             {
-                "code": 160
+                "code": 140
             }
         ],
         "semi": [

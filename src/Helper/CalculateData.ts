@@ -76,15 +76,11 @@ export const calculateData = (uploadedResults: any, startDate: Date, endDate: Da
         if (amount >= 0) {
           if (isTrade) newAccountDetails.winningTrades += 1
           newAccountDetails.wins += amount
-          newAccountDetails.averageWinPercentage = addToAverage(
-            newAccountDetails.averageWinPercentage, d.Percentage, newAccountDetails.winningTrades,
-          )
+          newAccountDetails.averageWinPercentage = addToAverage(newAccountDetails.averageWinPercentage, d.Percentage, newAccountDetails.winningTrades)
         } else {
           if (isTrade) newAccountDetails.losingTrades += 1
           newAccountDetails.losses += amount
-          newAccountDetails.averageLossPercentage = addToAverage(
-            newAccountDetails.averageLossPercentage, d.Percentage, newAccountDetails.losingTrades,
-          )
+          newAccountDetails.averageLossPercentage = addToAverage(newAccountDetails.averageLossPercentage, d.Percentage, newAccountDetails.losingTrades)
         }
       } else if (isDeposit) {
         newAccountDetails.deposits += amount

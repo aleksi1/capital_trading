@@ -10,7 +10,7 @@ export const roundTo = (i: number, d: number) => {
     n *= -1
   }
   /* eslint-disable no-restricted-properties */
-  const multiplicator = Math.pow(10, digits)
+  const multiplicator = 10 ** digits
   /* eslint-enable no-restricted-properties */
   n = parseFloat((n * multiplicator).toFixed(11))
   n = parseFloat((Math.round(n) / multiplicator).toFixed(digits))

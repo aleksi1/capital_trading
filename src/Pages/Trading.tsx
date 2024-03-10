@@ -30,7 +30,7 @@ const Trading = () => {
   const [startDate, setStartDate] = useState<Date>(new Date(`01/01/${new Date().getFullYear()}`))
   const [endDate, setEndDate] = useState<Date>(new Date())
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, react/no-unstable-nested-components
   const DatePickerCustomInput = forwardRef(({ value, onClick, label }: any, ref: any) => (
     <TextField
       id="outlined-basic"
@@ -96,7 +96,7 @@ const Trading = () => {
     const allowedFields = ['Amount', 'Balance', 'Percentage']
     // eslint-disable-next-line no-param-reassign
     if (name === 'Type') value = getTypeName(value.toLowerCase())
-    if (!allowedFields.includes(name) || value === '') return <>{value}</>
+    if (!allowedFields.includes(name) || value === '') return value
     const amount = roundTo(parseFloat(value), 2)
     const suffix = name === 'Percentage' ? '%' : ' €'
     if (name === 'Balance') {
