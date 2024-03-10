@@ -27,4 +27,7 @@ export const formatNumber = (n: number) => {
   return numberFormatter.format(roundTo(n, 2))
 }
 
-export const rootPath = '/capital_trading'
+export const getBasePath = () => {
+  const p = window.location.pathname.split('/')
+  return p?.length > 0 ? `${p[0]}` : ''
+}

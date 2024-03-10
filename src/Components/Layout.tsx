@@ -4,7 +4,7 @@ import {
 import { Container } from '@mui/system'
 import ShowChartIcon from '@mui/icons-material/ShowChart'
 import DarkModeSwitch from './DarkModeSwitch'
-import { rootPath } from '../Helper/Helper'
+import { getBasePath } from '../Helper/Helper'
 
 export const Layout = (props: any) => {
   const { children } = props
@@ -18,7 +18,7 @@ export const Layout = (props: any) => {
               component="div"
               sx={{ mr: 3, cursor: 'pointer' }}
               onClick={() => {
-                document.location.href = `${rootPath}#`
+                document.location.href = getBasePath()
               }}
             >
               <ShowChartIcon sx={{ verticalAlign: 'middle' }} />
@@ -28,7 +28,7 @@ export const Layout = (props: any) => {
               <Button
                 sx={{ my: 2, color: 'white', display: 'block' }}
                 onClick={() => {
-                  document.location.href = `${rootPath}#`
+                  document.location.href = getBasePath()
                 }}
               >
                 Home
@@ -36,7 +36,7 @@ export const Layout = (props: any) => {
               <Button
                 sx={{ my: 2, color: 'white', display: 'block' }}
                 onClick={() => {
-                  document.location.href = `${rootPath}#simulator`
+                  document.location.href = '#simulator'
                 }}
               >
                 Simulator
