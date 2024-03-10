@@ -105,12 +105,12 @@ export const calculateData = (uploadedResults: any, startDate: Date, endDate: Da
           },
         ],
       })
+      if (!newAccountDetails.balance) newAccountDetails.balance = d.Balance
     }
   })
 
   const firstRow: any = uploadedResults[0] ?? {}
   const cnames: any = Object.keys(firstRow)
-  newAccountDetails.balance = uploadedResults[0].Balance
   newAccountDetails.successRate = (newAccountDetails.winningTrades / newAccountDetails.totalTrades) * 100
   // eslint-disable-next-line consistent-return
   return {
