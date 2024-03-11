@@ -25,7 +25,7 @@ import {
 import { areas } from '../Helper/ChartData'
 import { Layout } from '../Components/Layout'
 
-const Trading = () => {
+const TradingReport = () => {
   const [selectedYear, setSelectedYear] = useState<string>(new Date().getFullYear().toString())
   const [startDate, setStartDate] = useState<Date>(new Date(`01/01/${new Date().getFullYear()}`))
   const [endDate, setEndDate] = useState<Date>(new Date())
@@ -369,4 +369,4 @@ const Trading = () => {
   )
 }
 
-export default Trading
+export default TradingReport

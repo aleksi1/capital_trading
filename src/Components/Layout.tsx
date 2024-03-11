@@ -31,7 +31,7 @@ export const Layout = (props: any) => {
                   document.location.href = getBasePath()
                 }}
               >
-                Home
+                Trading report
               </Button>
               <Button
                 sx={{ my: 2, color: 'white', display: 'block' }}
