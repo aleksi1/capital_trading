@@ -8,6 +8,7 @@ import { getBasePath } from '../Helper/Helper'
 
 export const Layout = (props: any) => {
   const { children } = props
+  const changeUrl = (url: string) => { document.location.href = url }
   return (
     <Container maxWidth="lg" sx={{ mt: 10 }}>
       <AppBar position="static" sx={{ mb: 3 }}>
@@ -18,7 +19,7 @@ export const Layout = (props: any) => {
               component="div"
               sx={{ mr: 3, cursor: 'pointer' }}
               onClick={() => {
-                document.location.href = getBasePath()
+                changeUrl(getBasePath())
               }}
             >
               <ShowChartIcon sx={{ verticalAlign: 'middle' }} />
@@ -28,7 +29,7 @@ export const Layout = (props: any) => {
               <Button
                 sx={{ my: 2, color: 'white', display: 'block' }}
                 onClick={() => {
-                  document.location.href = getBasePath()
+                  changeUrl(getBasePath())
                 }}
               >
                 Trading report
@@ -36,7 +37,7 @@ export const Layout = (props: any) => {
               <Button
                 sx={{ my: 2, color: 'white', display: 'block' }}
                 onClick={() => {
-                  document.location.href = '#simulator'
+                  changeUrl(`${getBasePath()}#simulator`)
                 }}
               >
                 Simulator

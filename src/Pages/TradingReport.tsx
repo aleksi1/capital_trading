@@ -1,3 +1,4 @@
+import { useRecoilValue } from 'recoil'
 import {
   Box, Button, Card, Chip, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Stack, TextField,
 } from '@mui/material'
@@ -24,11 +25,13 @@ import {
 } from '../Helper/CalculateData'
 import { areas } from '../Helper/ChartData'
 import { Layout } from '../Components/Layout'
+import { colorModeState } from '../Atoms'
 
 const TradingReport = () => {
   const [selectedYear, setSelectedYear] = useState<string>(new Date().getFullYear().toString())
   const [startDate, setStartDate] = useState<Date>(new Date(`01/01/${new Date().getFullYear()}`))
   const [endDate, setEndDate] = useState<Date>(new Date())
+  const colorMode = useRecoilValue(colorModeState)
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, react/no-unstable-nested-components
   const DatePickerCustomInput = forwardRef(({ value, onClick, label }: any, ref: any) => (
@@ -93,6 +96,7 @@ const TradingReport = () => {
   }, [uploadedResults, startDate, endDate])
 
   const getValue = (value: string, name: string) => {
+    const darkMode = colorMode === 'dark'
     const allowedFields = ['Amount', 'Balance', 'Percentage']
     // eslint-disable-next-line no-param-reassign
     if (name === 'Type') value = getTypeName(value.toLowerCase())
@@ -103,7 +107,7 @@ const TradingReport = () => {
       return <div style={{ color: '#1a75ff', fontWeight: 'bold' }}>{`${amount}${suffix}`}</div>
     }
     if (amount >= 0) {
-      return <div style={{ color: 'lightgreen', fontWeight: 'bold' }}>{`${amount}${suffix}`}</div>
+      return <div style={{ color: darkMode ? 'lightgreen' : '#23aa26', fontWeight: 'bold' }}>{`${amount}${suffix}`}</div>
     }
     return <div style={{ color: 'red', fontWeight: 'bold' }}>{`${amount}${suffix}`}</div>
   }

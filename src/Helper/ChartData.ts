@@ -11,15 +11,6 @@ export type ChartData = {
   values: DataValue[]
 }
 
-/**
-  {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-*/
-
 const pad = (n: number) => (n < 10 ? `0${n}` : n)
 
 const getKey = (date: Date) => `${pad(date.getFullYear())}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
