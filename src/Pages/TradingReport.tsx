@@ -16,7 +16,7 @@ import {
 } from 'react'
 import DatePicker from 'react-datepicker'
 import { parse } from '../Helper/ParseCsv'
-import { roundTo } from '../Helper/Helper'
+import { getAlignment, roundTo } from '../Helper/Helper'
 import ProfitChart from '../Components/ProfitChart'
 import { AccountDetails } from '../Types/Trading'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -334,7 +334,7 @@ const TradingReport = () => {
               {columnNames?.map((value: any) => {
                 if (value === 'Id') return ''
                 return (
-                  <TableCell key={`hc-${value}`} align="right">
+                  <TableCell key={`hc-${value}`} align={getAlignment(value)}>
                     {value}
                   </TableCell>
                 )
@@ -350,14 +350,6 @@ const TradingReport = () => {
                 {row?.map((value: any, index: number) => {
                   const columnName = columnNames[index]
                   if (columnName === 'Id') return ''
-                  const getAlignment = (name: string): 'left' | 'right' | 'inherit' | 'center' | 'justify' | undefined => {
-                    switch (name) {
-                      case 'Type':
-                        return 'center'
-                      default:
-                        return 'right'
-                    }
-                  }
                   return (
                     <TableCell key={`body-cell-${row[0]}-${columnName}`} align={getAlignment(columnName)}>
                       {getValue(value, columnName)}

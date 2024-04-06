@@ -31,3 +31,12 @@ export const getBasePath = () => {
   const p = window.location.pathname.split('/')
   return p?.length > 0 ? `${p[0]}` : ''
 }
+
+export const getAlignment = (name: string): 'left' | 'right' | 'inherit' | 'center' | 'justify' | undefined => {
+  switch (name) {
+    case 'Type':
+      return 'center'
+    default:
+      return 'right'
+  }
+}
