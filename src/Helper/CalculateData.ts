@@ -7,6 +7,8 @@ const addToAverage = (average: number, value: number, count: number) => {
   return Number.isNaN(newAverage) || !Number.isFinite(newAverage) ? 0 : newAverage
 }
 
+export const roundTo2Decimals = (n: number) => Math.round(n * 100) / 100
+
 const getAccountType = (type: string) => ({ demo_transfer: 'Demo', deposit: 'Live' }[type] ?? 'Live')
 
 export const getTaxYears = () => {
@@ -46,8 +48,11 @@ export const calculateData = (uploadedResults: any, startDate: Date, endDate: Da
     averageWinPercentage: 0,
     averageLossPercentage: 0,
     successRate: 0,
+    yearlyProfitPercentage: 0,
   }
 
+  let startBalance: number | undefined
+  let endBalance: number | undefined
   uploadedResults.forEach((obj: any) => {
     const d = obj
     removedAttributes.forEach((attr) => {
@@ -60,6 +65,11 @@ export const calculateData = (uploadedResults: any, startDate: Date, endDate: Da
     const date = new Date(d.Modified)
 
     if (date >= startDate && date <= endDate) {
+      if (!startBalance) startBalance = parseFloat(d.Balance)
+      else {
+        endBalance = parseFloat(d.Balance)
+      }
+
       const isTrade = type === 'trade'
       const isFee = ['swap', 'corporate_action'].includes(type)
       const isNonTrade = ['trade_correction', 'swap', 'corporate_action'].includes(type)
@@ -108,6 +118,7 @@ export const calculateData = (uploadedResults: any, startDate: Date, endDate: Da
   const firstRow: any = uploadedResults[0] ?? {}
   const cnames: any = Object.keys(firstRow)
   newAccountDetails.successRate = (newAccountDetails.winningTrades / newAccountDetails.totalTrades) * 100
+  newAccountDetails.yearlyProfitPercentage = roundTo2Decimals((((startBalance ?? 0) - (endBalance ?? 0)) / (endBalance ?? 0)) * 100)
   // eslint-disable-next-line consistent-return
   return {
     cnames, rowValues, newAccountDetails, currentChartData: parseChartData('day', currentChartData),

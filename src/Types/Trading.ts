@@ -11,4 +11,5 @@ export type AccountDetails = {
   averageWinPercentage: number
   averageLossPercentage: number
   successRate: number
+  yearlyProfitPercentage: number
 }

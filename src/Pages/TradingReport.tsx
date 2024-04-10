@@ -60,6 +60,7 @@ const TradingReport = () => {
     averageWinPercentage: 0,
     averageLossPercentage: 0,
     successRate: 0,
+    yearlyProfitPercentage: 0,
   })
   const [tableRows, setTableRows] = useState([])
   const [chartData, setChartData] = useState([])
@@ -181,7 +182,10 @@ const TradingReport = () => {
       <Card sx={{ marginBottom: '10px', maxWidth: '100%' }}>
         <Typography sx={{ m: 2 }} variant="h5" component="div">
           Account details
-          {accountDetails.type ? <Chip sx={{ ml: 2 }} color="info" label={accountDetails.type} /> : ''}
+          {accountDetails.type ? <Chip sx={{ ml: 2, mr: 2 }} color="info" label={accountDetails.type} /> : ''}
+          {accountDetails.yearlyProfitPercentage > 0
+            ? <span title="Yearly profit" style={{ color: 'green' }}>{`+${accountDetails.yearlyProfitPercentage}%`}</span>
+            : <span title="Yearly profit" style={{ color: 'red' }}>{`-${accountDetails.yearlyProfitPercentage}%`}</span>}
         </Typography>
         <Box
           component="form"
