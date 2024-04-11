@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import { useRecoilValue } from 'recoil'
 import {
   Box, Button, Card, Chip, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Stack, TextField,
@@ -183,9 +184,13 @@ const TradingReport = () => {
         <Typography sx={{ m: 2 }} variant="h5" component="div">
           Account details
           {accountDetails.type ? <Chip sx={{ ml: 2, mr: 2 }} color="info" label={accountDetails.type} /> : ''}
-          {accountDetails.yearlyProfitPercentage > 0
-            ? <span title="Yearly profit" style={{ color: 'green' }}>{`+${accountDetails.yearlyProfitPercentage}%`}</span>
-            : <span title="Yearly profit" style={{ color: 'red' }}>{`-${accountDetails.yearlyProfitPercentage}%`}</span>}
+          {accountDetails.yearlyProfitPercentage ? (
+            <>
+              {accountDetails.yearlyProfitPercentage > 0
+                ? <span title="Yearly profit" style={{ color: 'green' }}>{`+${accountDetails.yearlyProfitPercentage}%`}</span>
+                : <span title="Yearly profit" style={{ color: 'red' }}>{`-${accountDetails.yearlyProfitPercentage}%`}</span>}
+            </>
+          ) : '' }
         </Typography>
         <Box
           component="form"
