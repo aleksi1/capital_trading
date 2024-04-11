@@ -118,7 +118,9 @@ export const calculateData = (uploadedResults: any, startDate: Date, endDate: Da
   const firstRow: any = uploadedResults[0] ?? {}
   const cnames: any = Object.keys(firstRow)
   newAccountDetails.successRate = (newAccountDetails.winningTrades / newAccountDetails.totalTrades) * 100
-  newAccountDetails.yearlyProfitPercentage = roundTo2Decimals((((startBalance ?? 0) - (endBalance ?? 0)) / (endBalance ?? 0)) * 100)
+  const sb = (startBalance ?? 0)
+  const eb = (endBalance ?? 0)
+  newAccountDetails.yearlyProfitPercentage = roundTo2Decimals(((sb - eb - newAccountDetails.deposits) / eb) * 100)
   // eslint-disable-next-line consistent-return
   return {
     cnames, rowValues, newAccountDetails, currentChartData: parseChartData('day', currentChartData),
