@@ -188,7 +188,7 @@ const TradingReport = () => {
             <>
               {accountDetails.yearlyProfitPercentage > 0
                 ? <span title="Yearly profit" style={{ color: 'green' }}>{`+${accountDetails.yearlyProfitPercentage}%`}</span>
-                : <span title="Yearly profit" style={{ color: 'red' }}>{`-${accountDetails.yearlyProfitPercentage}%`}</span>}
+                : <span title="Yearly profit" style={{ color: 'red' }}>{`${accountDetails.yearlyProfitPercentage}%`}</span>}
             </>
           ) : '' }
         </Typography>
