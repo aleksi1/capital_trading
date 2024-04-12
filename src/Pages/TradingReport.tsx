@@ -22,7 +22,7 @@ import ProfitChart from '../Components/ProfitChart'
 import { AccountDetails } from '../Types/Trading'
 import 'react-datepicker/dist/react-datepicker.css'
 import {
-  calculateData, calculateTaxableIncome, calculateTaxes, getTaxRate, getTaxYears, getTypeName,
+  calculateData, calculateTaxableIncome, calculateTaxes, getColumnNameOverrides, getTaxRate, getTaxYears, getTypeName,
 } from '../Helper/CalculateData'
 import { areas } from '../Helper/ChartData'
 import { Layout } from '../Components/Layout'
@@ -342,9 +342,10 @@ const TradingReport = () => {
             <TableRow>
               {columnNames?.map((value: any) => {
                 if (value === 'Id') return ''
+                const columnOverrides = getColumnNameOverrides()
                 return (
                   <TableCell key={`hc-${value}`} align={getAlignment(value)}>
-                    {value}
+                    {columnOverrides[value] ? columnOverrides[value] : value}
                   </TableCell>
                 )
               })}

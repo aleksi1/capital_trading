@@ -143,6 +143,8 @@ export const getTypeName = (type: string) => {
   return types[type] ? types[type] : ''
 }
 
+export const getColumnNameOverrides: any = () => ({ Modified: 'Date' })
+
 export const calculateTaxableIncome = (uploadedResults: any, taxYear: string) => {
   let value = 0
   uploadedResults?.forEach((obj: any) => {

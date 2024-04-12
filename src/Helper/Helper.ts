@@ -34,6 +34,8 @@ export const getBasePath = () => {
 
 export const getAlignment = (name: string): 'left' | 'right' | 'inherit' | 'center' | 'justify' | undefined => {
   switch (name) {
+    case 'Modified':
+      return 'left'
     case 'Type':
       return 'center'
     default:
