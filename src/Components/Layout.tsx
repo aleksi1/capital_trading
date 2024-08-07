@@ -42,6 +42,14 @@ export const Layout = (props: any) => {
               >
                 Simulator
               </Button>
+              <Button
+                sx={{ my: 2, color: 'white', display: 'block' }}
+                onClick={() => {
+                  changeUrl(`${getBasePath()}#warrant`)
+                }}
+              >
+                Warrant
+              </Button>
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} justifyContent="end">
               <DarkModeSwitch />
