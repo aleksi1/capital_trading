@@ -2,6 +2,7 @@ import { Card, TextField } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
 import { Layout } from '../Components/Layout'
+import { isNumeric, roundTo } from '../Helper/Helper'
 
 const Warrant = () => {
   const [data, setData] = useState({
@@ -10,9 +11,10 @@ const Warrant = () => {
     percent: 10,
   })
   const inputChange = (event: any) => {
+    const value = roundTo(parseFloat(event.target.value?.replace(/,/g, '.')), 2)
     setData((prevState) => ({
       ...prevState,
-      [event.target.name]: event.target.value,
+      [event.target.name]: isNumeric(value) ? value : 0,
     }))
   }
   const calculatePriceIncrease = (originalPrice: any, percentageIncrease: any) => {
@@ -62,7 +64,7 @@ const Warrant = () => {
               }}
               label="New price"
               id="outlined-disabled"
-              value={calculatePriceIncrease(data.price, data.percent)}
+              value={roundTo(calculatePriceIncrease(data.price, data.percent), 2)}
             />
           </Grid>
           <Grid md={1}>
@@ -72,7 +74,7 @@ const Warrant = () => {
               }}
               label="Profit/loss"
               id="outlined-disabled"
-              value={calculate()}
+              value={roundTo(calculate(), 2)}
             />
           </Grid>
         </Grid>
