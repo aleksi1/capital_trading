@@ -14,7 +14,7 @@ const Warrant = () => {
     const value = roundTo(parseFloat(event.target.value?.replace(/,/g, '.')), 2)
     setData((prevState) => ({
       ...prevState,
-      [event.target.name]: isNumeric(value) ? value : 0,
+      [event.target.name]: isNumeric(value) && !Number.isNaN(value) ? value : 0,
     }))
   }
   const calculatePriceIncrease = (originalPrice: any, percentageIncrease: any) => {
