@@ -1,8 +1,11 @@
-import { Card, TextField } from '@mui/material'
+import {
+  Card, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField,
+} from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
 import { Layout } from '../Components/Layout'
 import { isNumeric, roundTo } from '../Helper/Helper'
+import { isValidNumber } from '../Helper/WarrantHelper'
 
 const Warrant = () => {
   const [data, setData] = useState({
@@ -11,11 +14,13 @@ const Warrant = () => {
     percent: 10,
   })
   const inputChange = (event: any) => {
-    const value = roundTo(parseFloat(event.target.value?.replace(/,/g, '.')), 2)
-    setData((prevState) => ({
-      ...prevState,
-      [event.target.name]: isNumeric(value) && !Number.isNaN(value) ? value : 0,
-    }))
+    const value = event.target.value?.replace(/,/g, '.')
+    if (isValidNumber(value)) {
+      setData((prevState) => ({
+        ...prevState,
+        [event.target.name]: isNumeric(value) && !Number.isNaN(value) ? value : 0,
+      }))
+    }
   }
   const calculatePriceIncrease = (originalPrice: any, percentageIncrease: any) => {
     const increase = parseFloat(originalPrice) * (parseFloat(percentageIncrease) / 100)
@@ -26,6 +31,7 @@ const Warrant = () => {
     const increase = calculatePriceIncrease(data.price * data.qty, data.percent)
     return increase - (data.price * data.qty)
   }
+  // const getTableData = () => (data.price ? calculatePriceTable(data.price, 1) : [])
   return (
     <Layout>
       <Card sx={{ paddingTop: '10px', marginBottom: '20px', maxWidth: '100%' }}>
@@ -78,6 +84,20 @@ const Warrant = () => {
             />
           </Grid>
         </Grid>
+      </Card>
+      <Card sx={{ display: 'none' }}>
+        <TableContainer component={Paper} sx={{ mb: 3 }}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  test
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody />
+          </Table>
+        </TableContainer>
       </Card>
     </Layout>
   )
