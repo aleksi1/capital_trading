@@ -22,6 +22,7 @@
     "@types/node": "^18.15.3",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
+    "capital-trading": "file:",
     "gh-pages": "^6.1.1",
     "i18next": "^21.4.0",
     "moment": "^2.29.1",
@@ -53,26 +54,26 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },  
+  },
   "devDependencies": {
     "@types/draft-js": "^0.11.6",
     "@types/papaparse": "^5.3.2",
+    "@types/react": "^18.2.56",
     "@types/react-datepicker": "^4.10.0",
+    "@types/react-dom": "^18.2.19",
     "@types/react-router-dom": "^5.3.2",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.56.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.26.1",
-    "@types/react": "^18.2.56",
-    "@types/react-dom": "^18.2.19",
-    "@typescript-eslint/eslint-plugin": "^7.0.2",
-    "@typescript-eslint/parser": "^7.0.2",
-    "@vitejs/plugin-react": "^4.2.1",
-    "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "typescript": "^5.2.2",
-    "vite": "^5.1.4"
+    "vite": "^5.4.8"
   }
 }
